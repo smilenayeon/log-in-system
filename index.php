@@ -1,3 +1,9 @@
+<?php
+require_once 'includes/config_session.inc.php'; //session running to grab the error data from session
+require_once 'includes/signup_view.inc.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +25,12 @@
 <form action="includes/signup.inc.php" method="post">
     <input type="text" name="username" placeholder="username">
     <input type="password" name="pwd" placeholder="password">
-    <input type="text" name="email" plcaholder="email">
+    <input type="text" name="email" placeholder="email">
     <button>Sign Up</button>
 
 </form>
-
+<?php
+ check_signup_errors(); //this is shown on web so this function is in view
+?>
 </body>
 </html>

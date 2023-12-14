@@ -12,10 +12,10 @@
  }
 
  function is_email_invalid(string $email){
-    if(!filter_var($email,FILTER_VALIDATE_EMAIL)){   //FILTER_VALIDATE_EMAIL is built in email validation
-        return true;
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){   //FILTER_VALIDATE_EMAIL is built in email validation
+        return true; //it is invalid email
     } else{
-        return false;
+        return false; // it is valid email
     }
  }
 
@@ -24,5 +24,13 @@
         return true;  //it is an error if the username is taken
     } else{
         return false;  //it is not an erro if the username is not taken
+    }
+ }
+
+ function is_email_registered(object $pdo, string $email){ 
+    if(get_email($pdo, $email)){  
+        return true;  //it is an error if the email is taken
+    } else{
+        return false; 
     }
  }
