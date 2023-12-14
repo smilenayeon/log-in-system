@@ -23,3 +23,24 @@
   $result = $stmt -> fetch(PDO::FETCH_ASSOC);
   return $result;
  }
+
+ function set_user(object $pdo, string $username, string $pwd, string $email){
+  $query = "INSERT INTO users (username,pwd,email) VALUES (:username, :pwd, :email)";
+  $stmt = $pdo -> prepare($query);
+  
+  $options=[        //cost factor to slow down and challenge potential hackers
+    'cost' => 12
+  ];
+
+  $hashedPwd = password_hash($pwd, PASSWORD_BCRYPT, $options);  //hashing pwd
+
+
+  $stmt -> bindParam(":username",$username);
+  $stmt -> bindParam(":pwd",$hashedPwd);
+  $stmt -> bindParam(":email",$email);
+  $stmt -> execute();
+
+  $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+  return $result;
+
+ }

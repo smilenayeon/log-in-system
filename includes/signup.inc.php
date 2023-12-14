@@ -31,11 +31,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if($errors){
             $_SESSION['errors_signup'] = $errors;
+
+            $signupData = [ //seding the user's input to index.php to try again. so the user do not need to input everything all over again,, but not pwd so user can retype to make sure it is the wanted pwd
+                "username" => $username,
+                "email" => $email
+            ];
+
+            $_SESSION["signup_data"] = $signupData; //sendind sinupupData as session variable
+
             header('Location: ../index.php');
             die();
         }
-        create_user($pdo, $pwd, $username, $email);
-        header('Location: ../index.php?signup=success');
+        create_user($pdo, $username, $pwd, $email);
+        header('Location: ../index.php?signup=success'); //sending user back to index.php page but with signup=success message
 
         $pdo=null;
         $stmt=null;
