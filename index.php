@@ -14,13 +14,24 @@ require_once 'includes/login_view.inc.php';
 </head>
 
 <body>
-<h3>log in</h3>  
-<form action="includes/login.inc.php" method="post">
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="pwd" placeholder="password">
-    <button>Log In</button>
+<h3>
+    <?php
+    output_username();
+    ?>
+</h3>
 
+<?php
+    if (!isset($_SESSION["user_id"])) { ?>
+       
+       <h3>log in</h3>  
+    <form action="includes/login.inc.php" method="post">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="pwd" placeholder="password">
+    <button>Log In</button>
 </form>
+<?php } ?>
+
+
 <?php
     check_login_errors();
 ?>
