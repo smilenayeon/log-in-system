@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/config_session.inc.php'; //session running to grab the error data from session
 require_once 'includes/signup_view.inc.php';
+require_once 'includes/login_view.inc.php';
 
 ?>
 
@@ -20,6 +21,9 @@ require_once 'includes/signup_view.inc.php';
     <button>Log In</button>
 
 </form>
+<?php
+    check_login_errors();
+?>
 
 <h3>sign up</h3>  
 <form action="includes/signup.inc.php" method="post">
@@ -32,5 +36,11 @@ require_once 'includes/signup_view.inc.php';
 <?php
  check_signup_errors(); //this is shown on web so this function is in view
 ?>
+
+<h3>log out</h3>  
+<form action="includes/logout.inc.php" method="post">
+    <button>Log Out</button>
+
+</form>
 </body>
 </html>
